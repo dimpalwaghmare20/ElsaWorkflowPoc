@@ -1,0 +1,29 @@
+@baseUrl = http://localhost:5051
+
+### 1. Hello World workflow
+GET {{baseUrl}}/api/workflows/hello?name=Leadership
+
+### 2. Small expense -> auto-approved
+POST {{baseUrl}}/api/workflows/expenses
+Content-Type: application/json
+
+{ "employee": "Asha", "email": "asha@example.com", "amount": 250, "description": "Team lunch" }
+
+### 3. Large expense -> waits for a manager decision
+# @name bigExpense
+POST {{baseUrl}}/api/workflows/expenses
+Content-Type: application/json
+
+{ "employee": "Ravi", "email": "ravi@example.com", "amount": 4500, "description": "Conference trip" }
+
+### 4. Check status (Running / Suspended)
+GET {{baseUrl}}/demo/expenses/{{bigExpense.response.body.workflowInstanceId}}
+
+### 5a. Approve
+POST {{baseUrl}}/demo/expenses/{{bigExpense.response.body.workflowInstanceId}}/approve
+
+### 5b. ...or reject
+POST {{baseUrl}}/demo/expenses/{{bigExpense.response.body.workflowInstanceId}}/reject
+
+### 6. Check status again (Finished)
+GET {{baseUrl}}/demo/expenses/{{bigExpense.response.body.workflowInstanceId}}
