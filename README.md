@@ -31,6 +31,24 @@ dotnet run
 Open **http://localhost:5051** and sign in with `admin` / `Demo@12345`.
 These are local demo credentials from `appsettings.Development.json`. Change them before deploying anywhere.
 
+## Oil & gas procurement UI
+
+Open **http://localhost:5051/procurement** for the Field Supply dashboard (no Studio login needed).
+Submit an equipment/spares request with requester, email, site, estimated cost in USD, and justification.
+The new **Equipment & Spares Procurement** Elsa workflow auto-approves costs up to USD 1,000
+(an illustrative demo rule, not an industry policy). Larger requests suspend until you click
+**Approve purchase** or **Reject purchase** and confirm the decision. Use **Refresh** to read
+persisted workflow state, including after an application restart. The original expense workflows
+and Studio at `/` remain unchanged.
+
+The dashboard and `/demo/purchases/*` review APIs are unauthenticated, local-demo-only.
+Notifications are logged, not emailed; no live procurement or operational safety decisions are made.
+Requests and decisions live in Elsa's SQLite workflow state, not browser storage.
+
+With the app running, run `.\tests\Test-Procurement.ps1` from the solution folder to check
+thresholds, both manager decisions, persisted details, and API validation.
+The checks create synthetic requests in the local demo database.
+
 ## Demo script (about 10 minutes)
 
 Use [`demo.http`](demo.http) in VS Code (REST Client extension) or Visual Studio, or use the curl commands below.

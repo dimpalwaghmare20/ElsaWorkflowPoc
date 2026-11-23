@@ -1,0 +1,35 @@
+:root { color-scheme: light; --ink: #152f3e; --muted: #5c6d79; --accent: #006f73; --border: #d9e3e7; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f2f6f7; color: var(--ink); font: 15px/1.5 "Segoe UI", sans-serif; }
+header { background: #112c3a; color: white; padding: 20px 5%; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+a { color: inherit; } .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; letter-spacing: 2px; text-decoration: none; }
+.mark { padding: 8px; background: #27c4ae; color: #112c3a; border-radius: 6px; letter-spacing: 0; }
+nav { display: flex; gap: 28px; align-items: center; font-size: 14px; } nav span { color: #bed0d8; }
+main { max-width: 1440px; margin: auto; padding: 36px 5%; }
+.intro { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+h1 { font-size: clamp(28px, 4vw, 42px); margin: 4px 0; letter-spacing: -1px; } h2 { margin: 0 0 12px; font-size: 22px; }
+p { margin: 0 0 16px; } .eyebrow { color: var(--accent); font-weight: 700; font-size: 12px; letter-spacing: 1.6px; margin-bottom: 8px; }
+.demo-label { border: 1px solid #b6c9d0; border-radius: 30px; padding: 8px 15px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+.notice { background: #fff5de; color: #76550e; border-left: 3px solid #dbab43; padding: 12px 16px; font-size: 13px; margin: 8px 0 24px; }
+.metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+.metrics div { background: white; padding: 18px 24px; border: 1px solid var(--border); border-radius: 10px; }
+.metrics span { color: var(--muted); font-size: 13px; display: block; } .metrics strong { font-size: 30px; }
+.workspace { display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: 24px; align-items: start; }
+.panel { background: white; border: 1px solid var(--border); padding: 24px; border-radius: 12px; box-shadow: 0 5px 20px #152f3e04; }
+.muted { color: var(--muted); font-size: 13px; } label { display: block; font-size: 13px; font-weight: 600; margin: 14px 0; }
+input, textarea { width: 100%; border: 1px solid #b8cbd3; border-radius: 6px; padding: 10px 12px; margin-top: 5px; font: inherit; color: var(--ink); }
+textarea { resize: vertical; } button { font: inherit; border-radius: 6px; border: 1px solid #b8cbd3; background: white; color: var(--ink); padding: 8px 14px; cursor: pointer; font-weight: 600; }
+button:hover { background: #eaf4f3; } button:disabled { opacity: .55; cursor: wait; } button.primary { background: var(--accent); color: white; border-color: var(--accent); width: 100%; padding: 12px; }
+:focus-visible { outline: 3px solid #dfae45; outline-offset: 3px; }
+.section-heading { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+.request { border: 1px solid var(--border); border-radius: 8px; padding: 18px; margin: 16px 0; }
+.request-top { display: flex; justify-content: space-between; align-items: start; gap: 10px; }
+.request h3 { margin: 0; font-size: 17px; } .request p { margin: 8px 0; overflow-wrap: anywhere; }
+.badge { border-radius: 20px; padding: 4px 10px; font-size: 12px; background: #edf1f4; white-space: nowrap; }
+.badge.PendingApproval { color: #825606; background: #fff1ce; } .badge.Approved, .badge.AutoApproved { color: #12634f; background: #e0f6ed; } .badge.Rejected { color: #9c3434; background: #fde9e9; }
+.meta { font-size: 12px; color: var(--muted); } .amount { font-size: 22px; font-weight: 700; }
+.actions { display: flex; gap: 10px; margin-top: 14px; } .approve { color: #12634f; border-color: #12634f; } .reject { color: #9c3434; border-color: #9c3434; }
+#message:not(:empty) { border-radius: 6px; padding: 12px; background: #e6f5f0; margin: 16px 0; } #message.error { color: #9c3434; background: #fde9e9; }
+.flow { border-top: 1px solid var(--border); margin-top: 24px; padding-top: 18px; font-size: 12px; color: var(--muted); } .flow strong, .flow span { display: block; }
+@media (max-width: 1000px) { .workspace { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { header, .intro { flex-direction: column; align-items: start; } nav span { display: none; } .metrics { grid-template-columns: repeat(2, 1fr); } main { padding: 24px 4%; } .panel { padding: 18px; } .request-top { flex-wrap: wrap; } }

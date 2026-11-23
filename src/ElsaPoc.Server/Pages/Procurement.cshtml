@@ -1,0 +1,58 @@
+@page "/procurement"
+@using ElsaPoc.Server.Workflows
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Field Supply | Oil & Gas Procurement</title>
+    <link rel="stylesheet" href="/procurement.css">
+    <script src="/procurement.js" defer></script>
+</head>
+<body>
+    <header>
+        <a class="brand" href="/procurement"><span class="mark">FS</span> FIELD SUPPLY</a>
+        <nav aria-label="Main navigation"><span>Procurement workspace</span><a href="/">Open Elsa Studio &rarr;</a></nav>
+    </header>
+    <main>
+        <section class="intro">
+            <div><p class="eyebrow">OIL & GAS / SUPPLY CHAIN</p><h1>Keep the field moving.</h1><p>Request equipment and spares. Let Elsa route the approval.</p></div>
+            <span class="demo-label">DEMO WORKSPACE</span>
+        </section>
+        <p class="notice">Illustrative purchasing approvals only. No live orders, payments, equipment control, or operational safety authorization.</p>
+        <section class="metrics" aria-label="Request summary">
+            <div><span>Requests</span><strong id="total">--</strong></div>
+            <div><span>Awaiting manager</span><strong id="pending">--</strong></div>
+            <div><span>Approved</span><strong id="approved">--</strong></div>
+            <div><span>Rejected</span><strong id="rejected">--</strong></div>
+        </section>
+        <div class="workspace">
+            <section class="panel">
+                <p class="eyebrow">01 / REQUEST</p><h2>Equipment & spares</h2>
+                <p class="muted">Demo rule: up to USD @PurchaseApprovalWorkflow.AutoApproveLimit.ToString("N0") is auto-approved. Larger requests wait for a manager.</p>
+                <form id="purchase-form">
+                    <label>Requested by<input name="requestedBy" required maxlength="100" placeholder="Your name"></label>
+                    <label>Email<input name="email" type="email" required maxlength="200" placeholder="name@example.com"></label>
+                    <label>Site / facility<input name="site" required maxlength="100" list="sites" placeholder="Select or enter a site"></label>
+                    <datalist id="sites"><option value="North Basin - Rig 07"><option value="Coastal Terminal"><option value="Central Processing Facility"></datalist>
+                    <label>Equipment / spare<input name="equipment" required maxlength="150" list="equipment" placeholder="What do you need?"></label>
+                    <datalist id="equipment"><option value="Pump seal kit"><option value="Valve actuator spare"><option value="Pressure sensor"><option value="Filter cartridge set"></datalist>
+                    <label>Estimated cost (USD)<input name="estimatedCost" type="number" min="0.01" max="10000000" step="0.01" required placeholder="4500.00"></label>
+                    <label>Business justification<textarea name="justification" rows="3" required maxlength="500" placeholder="Replacement stock for planned maintenance"></textarea></label>
+                    <button class="primary" type="submit">Submit purchase request &rarr;</button>
+                </form>
+            </section>
+            <section class="panel requests">
+                <div class="section-heading"><div><p class="eyebrow">02 / TRACK & REVIEW</p><h2>Purchase requests</h2></div><button id="refresh" type="button">Refresh</button></div>
+                <p class="muted">Live Elsa workflow state. Manager controls are simulated and unauthenticated for this local POC.</p>
+                <div id="message" role="status" aria-live="polite"></div>
+                <div id="request-list" aria-busy="true"><p>Loading requests...</p></div>
+                <div class="flow"><strong>Powered by Elsa</strong><span>Submit &rarr; Validate &rarr; Cost rule &rarr; Manager decision &rarr; Notify</span></div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

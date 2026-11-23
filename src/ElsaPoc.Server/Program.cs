@@ -45,6 +45,7 @@ services.AddElsa(elsa => elsa
     {
         management.UseEntityFrameworkCore(ef => ef.UseSqlite());
         management.AddVariableType<ExpenseRequest>("ElsaPoc");
+        management.AddVariableType<PurchaseRequest>("ElsaPoc");
     })
     .UseWorkflowRuntime(runtime => runtime.UseEntityFrameworkCore(ef => ef.UseSqlite()))
     .UseScheduling()
@@ -74,5 +75,7 @@ app.UseAuthorization();
 app.MapWorkflowsApi();
 app.UseWorkflows();
 app.MapDemoEndpoints();
+app.MapProcurementEndpoints();
+app.MapRazorPages();
 app.MapFallbackToPage("/_Host");
 app.Run();
